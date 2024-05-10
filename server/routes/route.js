@@ -1,12 +1,13 @@
 // backend routeing
 
 import express from 'express';
-import { Router } from 'express';
-import { addUser } from '../controller/user_contrl.js';
-const router= express.Router();
+
+import { addUser ,getUsers} from '../controller/user_contrl.js';
+
+const router= express.Router(); // 
 
 router.post('/add',addUser);
-
+router.get('/all',getUsers);
 export default router;// router uses the function if the express which takes the function which was already in the api call which was post 
 //we use the router.post with different routes that is add delete edit here we used the add for the first doing
 
