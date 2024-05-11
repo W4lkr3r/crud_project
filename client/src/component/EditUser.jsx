@@ -20,7 +20,7 @@ const defaultValue={
     phone:''
 }
 //this function used for gettering the user wht it typed whch is stored in the target section of the which is inside the value in the developer section
-const AddUser = ()=>{
+const EditUser = ()=>{
     const [user,setUser]=useState(defaultValue);// the whole default value is inside the user variable now here e.target.name we can fill the accordingly
    
     const navigate=useNavigate();
@@ -58,7 +58,7 @@ const onClickValue= async ()=>{
                  </FormControl>
 
                  <FormControl>
-                    <Button variant="outlined" onClick={( ) => onClickValue()}>ADD USER</Button>
+                    <Button variant="outlined" onClick={( ) => onClickValue()}>Edit USER</Button>
                  </FormControl>
                  
             
@@ -66,7 +66,7 @@ const onClickValue= async ()=>{
     )
 
 }
-export default AddUser;
+export default EditUser;
 
 // // Formgroup se ek form create hota h jisse ek input value ko prsent lr sakte h
 // uske adar ek child class, hogi parent form control hogi uske andar ek input label use hoga jisme aap daal sakte kya inpout lena aur vo close ek input self closing tag se hoga

@@ -3,10 +3,11 @@ import logo from './logo.svg';
 import './App.css';
 import AddUser from './component/AddUser';
 import NavBar from './component/NavBar';
-import Alluser from './component/AllUsers';
+import Allusers from './component/AllUsers';
 import Real_database from './component/Real_database';
-
+import EditUser from './component/EditUser';
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
+
 class App extends Component {
   render() {
     return (
@@ -17,7 +18,8 @@ class App extends Component {
 
            <Route path='/add' element={<AddUser/>} />
           <Route path='/' element={<Real_database/>} />
-          <Route path='/all' element={<Alluser/>} />
+          <Route path='/all' element={<Allusers/>} />
+          <Route path='/edit/:username' element={<EditUser/>}/>
           </Routes>
         
       </BrowserRouter>
