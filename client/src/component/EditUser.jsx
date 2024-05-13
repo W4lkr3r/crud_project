@@ -1,8 +1,8 @@
 import React from "react";
 import { FormGroup,FormControl,InputLabel,Input,Typography,styled, Button } from '@mui/material';
-import{addUser} from '../service/api';
-import {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import{editUser,getUser} from '../service/api';
+import {useState, useEffect} from 'react';
+import {useNavigate,useParams} from 'react-router-dom';
 const Container =styled(FormGroup)`
 width: 50%;
 margin:5% auto 0 auto;
@@ -24,29 +24,40 @@ const EditUser = ()=>{
     const [user,setUser]=useState(defaultValue);// the whole default value is inside the user variable now here e.target.name we can fill the accordingly
    
     const navigate=useNavigate();
+    const {username}= useParams();
 
+    useEffect(()=>{
+     loadUserDetails();
+    },[]);
 
+    const loadUserDetails=async()=>{
+        const response=await getUser(username);
+         // here when the api call is initiated it doesnt know what username is therefore we use a hook of react
+         setUser(response.data);
+    }
+
+    const editUserDetails= async ()=>{
+        const response= await editUser(username,user);
+         navigate('/all');
+      }
 const onValueChange =(e)=>{
     console.log(e.target.name,e.target.value); //now here we have the name element in the e parameter of the onchange value so we will use the e.name.target.value
     setUser({...user,[e.target.name]: e.target.value}); // here problem was when the key and the value both comes to a variable then we have to set the key to a square bracket
    console.log(user);
 }
-const onClickValue= async ()=>{
-   await addUser(user);
-   navigate('/all');
-}
+
     return (
         <Container>
-            <Typography variant="h4">Add User</Typography>
+            <Typography variant="h4">Edit  User</Typography>
             <FormControl>
                  <InputLabel> Name</InputLabel>
-                 <Input onChange={(e) => onValueChange(e)} name="name"/> 
+                 <Input onChange={(e) => onValueChange(e)} name="name" /> 
 
                  </FormControl>
                 
                  <FormControl>
                  <InputLabel> UserName</InputLabel>
-                 <Input onChange={(e) => onValueChange(e)} name="username"/>
+                 <Input onChange={(e) => onValueChange(e)} name="username" />
                  </FormControl>
                  <FormControl>
                  <InputLabel> Email</InputLabel>
@@ -58,7 +69,7 @@ const onClickValue= async ()=>{
                  </FormControl>
 
                  <FormControl>
-                    <Button variant="outlined" onClick={( ) => onClickValue()}>Edit USER</Button>
+                    <Button variant="outlined" onClick={() => editUserDetails()}>Edit USER</Button>
                  </FormControl>
                  
             

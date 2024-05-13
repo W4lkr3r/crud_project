@@ -31,3 +31,22 @@ export const getUsers =async()=>{
   }
 
 }
+
+export const getUser =async (username)=>{
+  try{
+     return await axios.get(`${URL}/${username}`);
+  }
+  catch(error){
+    console.log("Error while calling api",error);
+  }
+}
+
+
+export const editUser=async (username,user)=>{
+  try {
+    return await axios.put(`${URL}/${username}`,user);
+  }
+  catch(error){
+    console.log("Error while calling the editUSer api",error)
+  }
+}

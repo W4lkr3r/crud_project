@@ -31,4 +31,28 @@ export const getUsers=async (request,response)=>{
    catch(error){
      response.status(404).json({message:error.message});
    }
-}
+};
+
+export const getUser =async (request,response)=>{
+ 
+   try {
+   const user=await User.find({username:request.params.username});
+   response.status(200).json(user);
+   }
+   catch(error){
+     response.status(404).json({message:error.message});
+   }
+};
+
+
+export const editUser=async(request,response)=>{
+   let user =request.body;
+   const editUser=new User(user);
+   try {
+     await User.updateOne({username:request.params.username},editUser);
+     response.status(201).json(editUser);
+   }
+   catch(error){
+       response.status(409).json({message:error.message});
+   }
+};
