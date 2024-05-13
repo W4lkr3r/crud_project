@@ -1,0 +1,1 @@
+The MERN CRUD Application is a full-stack web application hosted on GitHub, allowing users to perform CRUD operations (Create, Read, Update, Delete) on a collection of data. Utilizing the MERN stack - MongoDB, Express.js, React.js, and Node.js - this application provides a seamless user experience for managing data in a database.
